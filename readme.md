@@ -1,7 +1,8 @@
 # Statistics Application _StatisticsApp_
 
-<img alt="GitHub License" src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge">
+<img alt="GitHub License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Lavrek/StatisticsApp?style=for-the-badge">
+<img alt="GitHub top language" src="https://img.shields.io/badge/Repository%20Size-291%20KB-blue?style=for-the-badge">
 
 ### About
 

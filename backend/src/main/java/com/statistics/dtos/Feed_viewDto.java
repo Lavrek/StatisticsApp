@@ -18,7 +18,11 @@ public class Feed_viewDto {
     @JsonProperty
     private String feed_name;
     @JsonProperty
-    private int disappear;
+    private int sold;
+    @JsonProperty
+    private int is_new;
+    @JsonProperty
+    private int is_outlet;
     @JsonProperty
     private int is_sale;
     @JsonProperty

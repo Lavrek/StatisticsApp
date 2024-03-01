@@ -36,7 +36,7 @@ public class StatisticsController {
     }
 
     @CrossOrigin(methods = {RequestMethod.GET})
-    @GetMapping("store")
+    @GetMapping("/store")
     public List<Feed_viewDto> getAllFeeds() {
         try {
             return feed_viewService.getAllFeeds();

@@ -21,7 +21,7 @@ export const ALLFEEDSCOLUMNS = [
     },
     {
       Header: "Sold",
-      accessor: "disappear",
+      accessor: "sold",
     },
     {
       Header: "Sale",

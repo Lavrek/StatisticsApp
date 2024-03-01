@@ -18,6 +18,7 @@ public class Goods {
     private String ean;
     private String title;
     private String price_value;
+    private String currency;
     private int availability_external;
     private int availability_internal;
     private int availability_manufacturer;

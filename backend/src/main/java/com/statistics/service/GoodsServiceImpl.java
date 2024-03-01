@@ -52,6 +52,7 @@ public class GoodsServiceImpl implements GoodsService {
                     String priceValue = priceMap.get(product.getEan());
                     if (priceValue != null) {
                         goods.setPrice_value(priceValue);
+                        goods.setCurrency("CZK");
                     }
                     Availability availability = availabilityMap.get(product.getEan());
                     goods.setAvailability_external(availability.getExternal());

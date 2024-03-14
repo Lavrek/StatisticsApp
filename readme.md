@@ -3,7 +3,7 @@
 <img alt="GitHub License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Lavrek/StatisticsApp?style=for-the-badge">
 <img alt="GitHub language" src="https://img.shields.io/badge/JavaScript-38.5%25-886FBF?style=for-the-badge">
-<img alt="GitHub size" src="https://img.shields.io/badge/Repository%20Size-291%20KB-blue?style=for-the-badge">
+<img alt="GitHub size" src="https://img.shields.io/badge/Repository%20Size-293%20KB-blue?style=for-the-badge">
 
 ### About
 

@@ -83,8 +83,8 @@ export default function Table ({ columns, data }) {
               <tr {...row.getRowProps()}>
                   {row.cells.map((cell, cellIndex) => {
                     if (
-                      cell.column.id === "disappear" ||
-                      cell.column.Header === "disappear"
+                      cell.column.id === "sold" ||
+                      cell.column.Header === "sold"
                     ) {
                       return (
                         <td

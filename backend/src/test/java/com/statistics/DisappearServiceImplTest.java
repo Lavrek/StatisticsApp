@@ -1,6 +1,5 @@
 package com.statistics;
 
-import com.statistics.dtos.GoodsDto;
 import com.statistics.repository.DisappearRepository;
 import com.statistics.service.DisappearService;
 import com.statistics.service.DisappearServiceImpl;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import statistics.Item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,19 +43,19 @@ public class DisappearServiceImplTest {
         Long mockFeedId = 1L;
         List<String> mockSelectedGoodsEan = Arrays.asList("ean1", "ean2");
 
-        GoodsDto mockDto1 = new GoodsDto();
+        Item mockDto1 = new Item();
         mockDto1.setEan("ean1");
         mockDto1.setTitle("Product1");
-        GoodsDto mockDto2 = new GoodsDto();
+        Item mockDto2 = new Item();
         mockDto2.setEan("ean2");
         mockDto1.setTitle("Product2");
 
-        List<GoodsDto> mockAllGoods = Arrays.asList(mockDto1, mockDto2);
+        List<Item> mockAllGoods = Arrays.asList(mockDto1, mockDto2);
 
         when(disappearRepository.findSoldedProductsEans(mockFeedId)).thenReturn(mockSelectedGoodsEan);
         when(goodsService.getAllGoods()).thenReturn(mockAllGoods);
 
-        List<GoodsDto> result = disappearService.getSelectedSoldGoods(mockFeedId);
+        List<Item> result = disappearService.getSelectedSoldGoods(mockFeedId);
 
         assertNotNull(result);
         assertEquals(2, result.size());

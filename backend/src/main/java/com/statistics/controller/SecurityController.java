@@ -2,12 +2,12 @@ package com.statistics.controller;
 
 
 import com.statistics.LoginMessage;
-import com.statistics.dtos.LoginDto;
 import com.statistics.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import statistics.LoginDto;
 
 @RestController
 @CrossOrigin

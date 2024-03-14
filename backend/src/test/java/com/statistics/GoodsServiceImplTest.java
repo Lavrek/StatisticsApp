@@ -1,6 +1,5 @@
 package com.statistics;
 
-import com.statistics.dtos.GoodsDto;
 import com.statistics.mapper.GoodsDtoToGoods;
 import com.statistics.model.Description;
 import com.statistics.model.Price;
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import statistics.Item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,16 +73,15 @@ public class GoodsServiceImplTest {
 
         List<Availability> mockAvailabilityList = Arrays.asList(availability1);
 
-        GoodsDto goodsDto1 = new GoodsDto();
-        goodsDto1.setProduct_id(01);
+        Item goodsDto1 = new Item();
+        goodsDto1.setProductId(01);
         goodsDto1.setEan("ean1");
-        goodsDto1.setProduct_id(01);
         goodsDto1.setTitle("Product1");
-        goodsDto1.setPart_number("001");
-        goodsDto1.setAvailability_external(1);
-        goodsDto1.setAvailability_manufacturer(1);
-        goodsDto1.setAvailability_internal(1);
-        goodsDto1.setPrice_value("2100");
+        goodsDto1.setPartNumber("001");
+        goodsDto1.setAvailabilityExternal(1);
+        goodsDto1.setAvailabilityManufacturer(1);
+        goodsDto1.setAvailabilityInternal(1);
+        goodsDto1.setPriceValue("2100");
         goodsDto1.setCurrency("CZK");
 
 
@@ -91,18 +90,18 @@ public class GoodsServiceImplTest {
         when(availabilityRepository.findAll()).thenReturn(mockAvailabilityList);
         when(goodsDtoToGoods.goodsToGoodsDto(any())).thenReturn(goodsDto1);
 
-        List<GoodsDto> result = goodsService.getAllGoods();
+        List<Item> result = goodsService.getAllGoods();
 
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals("ean1", result.get(0).getEan());
-        assertEquals(01, result.get(0).getProduct_id());
+        assertEquals(01, result.get(0).getProductId());
         assertEquals("Product1", result.get(0).getTitle());
-        assertEquals("001", result.get(0).getPart_number());
-        assertEquals("2100", result.get(0).getPrice_value());
-        assertEquals(1, result.get(0).getAvailability_manufacturer());
-        assertEquals(1, result.get(0).getAvailability_external());
-        assertEquals(1, result.get(0).getAvailability_internal());
+        assertEquals("001", result.get(0).getPartNumber());
+        assertEquals("2100", result.get(0).getPriceValue());
+        assertEquals(1, result.get(0).getAvailabilityManufacturer());
+        assertEquals(1, result.get(0).getAvailabilityExternal());
+        assertEquals(1, result.get(0).getAvailabilityInternal());
 
         verify(productRepository, times(1)).findAll();
         verify(priceRepository, times(1)).findAll();

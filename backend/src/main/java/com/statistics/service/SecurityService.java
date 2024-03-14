@@ -1,7 +1,7 @@
 package com.statistics.service;
 
 import com.statistics.LoginMessage;
-import com.statistics.dtos.LoginDto;
+import statistics.LoginDto;
 
 /**
  * Service interface for managing security-related operations.

@@ -2,13 +2,13 @@ package com.statistics.service;
 
 
 import com.statistics.LoginMessage;
-import com.statistics.dtos.LoginDto;
 import com.statistics.repository.SecurityRepository;
 import com.statistics.model.Security;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import statistics.LoginDto;
 
 @Service
 @AllArgsConstructor

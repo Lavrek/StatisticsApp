@@ -1,7 +1,7 @@
 package com.statistics.service;
 
-import com.statistics.dtos.GoodsDto;
 import com.statistics.model.Description;
+import statistics.Item;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface GoodsService {
     /**
      * Retrieves a list of all goods.
      *
-     * @return A list of {@link GoodsDto} representing all goods.
+     * @return A list of {@link Item} representing all goods.
      */
-    public List<GoodsDto> getAllGoods();
+    public List<Item> getAllGoods();
 
     /**
      * Retrieves the descriptions for a specific product based on its EAN (European Article Number).

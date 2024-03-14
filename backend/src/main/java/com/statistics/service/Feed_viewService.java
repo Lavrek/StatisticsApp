@@ -1,6 +1,6 @@
 package com.statistics.service;
 
-import com.statistics.dtos.Feed_viewDto;
+import statistics.Feed;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public interface Feed_viewService {
     /**
      * Retrieves a list of all feed views.
      *
-     * @return A list of {@link Feed_viewDto} representing all feed views.
+     * @return A list of {@link Feed} representing all feed views.
      */
-    public List<Feed_viewDto> getAllFeeds ();
+    public List<Feed> getAllFeeds ();
 
     /**
      * Calculates the total revenue for a specific feed view.

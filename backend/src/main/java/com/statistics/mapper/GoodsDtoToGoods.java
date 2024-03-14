@@ -1,31 +1,41 @@
 package com.statistics.mapper;
 
-import com.statistics.dtos.GoodsDto;
 import com.statistics.model.Goods;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import statistics.Item;
 
 /**
- * Mapper interface to convert between Goods DTO (Data Transfer Object) and Goods entity.
+ * Mapper interface to convert between Item DTO (Data Transfer Object) and Goods entity.
  * Utilizes MapStruct for mapping between source and destination objects.
  */
 @Mapper(componentModel = "spring")
 
 public interface GoodsDtoToGoods {
     /**
-     * Converts a Goods entity to a Goods DTO.
+     * Converts a Goods entity to an Item DTO.
      *
      * @param source The Goods entity to be converted.
-     * @return The resulting Goods DTO.
+     * @return The resulting Item DTO.
      */
-    GoodsDto goodsToGoodsDto(Goods source);
+
+    @Mapping(target = "partNumber", source = "source.part_number")
+    @Mapping(target = "productId", source = "source.product_id")
+    @Mapping(target = "priceValue", source = "source.price_value")
+    @Mapping(target = "availabilityExternal", source = "source.availability_external")
+    @Mapping(target = "availabilityInternal", source = "source.availability_internal")
+    @Mapping(target = "availabilityManufacturer", source = "source.availability_manufacturer")
+    Item goodsToGoodsDto(Goods source);
 
     /**
-     * Converts a Goods DTO to a Goods entity.
+     * Converts an Item DTO to a Goods entity.
      *
-     * @param destination The Goods DTO to be converted.
+     * @param destination The Item DTO to be converted.
      * @return The resulting Goods entity.
      */
-    Goods goodsDtoToGoods(GoodsDto destination);
+    @InheritInverseConfiguration
+    Goods goodsDtoToGoods(Item destination);
 
 }
 

@@ -1,0 +1,265 @@
+openapi: 3.0.0
+info:
+  title: Statistics
+  description: Statistics application to assist online store managers in tracking goods and finances.
+  contact:
+    name: Ing. Ekaterina Lavrova
+    email: lavrova@seznam.cz
+  version: 1.0.0
+tags:
+  - name: Products
+    description: Products registered in system
+  - name: User
+    description: All feeds in system
+servers:
+  - url: http://localhost:8080/statistics
+paths:
+  /products/getAll:
+    get:
+      tags:
+        - Products
+      summary: Get products from the system
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+  /products/getSelectedGoods/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get Products based on feed's id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Successfully response with path param
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        400:
+          description: Invalid id
+  /products/getDescription/{ean}:
+    get:
+      tags:
+        - Products
+      summary: Get description for selected product based on ean
+      parameters:
+        - in: path
+          name: ean
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful response with param
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Description'
+        404:
+          description: Task not found
+  /store:
+    get:
+      tags:
+        - Products
+      summary: Get all feeds
+      responses:
+        200:
+          description: Successful response with param
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+        404:
+          description: Task not found
+  /security/login:
+    post:
+      tags:
+        - User
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginMessage'
+components:
+  schemas:
+    Item:
+      type: object
+      required:
+        - id
+        - name
+        - part_number
+        - product_id
+        - ean
+        - title
+        - price_value
+        - currency
+        - availability_external
+        - availability_internal
+        - availability_manufacturer
+      properties:
+        id:
+          readOnly: true
+          type: integer
+          format: int32
+          example: 34236599
+        name:
+          type: string
+          example: Kalhoty
+        part_number:
+          type: string
+          example: 012
+        product_id:
+          type: integer
+          format: int32
+          example: 50012
+        ean:
+          type: string
+          example: 1213556CZ598U
+        title:
+          type: string
+          example: Kalhoty AllBlack size XS - 2XL
+        price_value:
+          type: string
+          example: 7450
+        currency:
+          type: string
+          example: CZK
+        availability_external:
+          type: integer
+          format: int32
+          example: 2
+        availability_internal:
+          type: integer
+          format: int32
+          example: 3
+        availability_manufacturer:
+          type: integer
+          format: int32
+          example: 10
+
+    Products:
+      type: array
+      items:
+        $ref: '#/components/schemas/Item'
+
+    Description:
+      type: object
+      required:
+        - ean
+        - large_description
+        - short_description
+      properties:
+        ean:
+          type: string
+          example: 1213556CZ598U
+        large_description:
+          type: string
+          example: Klasické návleky, širšího střihu pro velké boty ušité z třívrstvé nepromokavé membrány GORE-TEX®, aby byla zabezpečena co nejvyšší prodyšnost.
+        short_description:
+          type: string
+          example: Klasické návleky pro velké boty ušité z třívrstvé nepromokavé membrány GORE-TEX.
+
+    Feed:
+      type: object
+      required:
+        - id
+        - count
+        - end
+        - error_status
+        - feed_name
+        - sold
+        - is_new
+        - is_outlet;
+        - is_sale
+        - new_product
+        - ok_status
+        - totalRevenue
+      properties:
+        id:
+          readOnly: true
+          type: integer
+          format: int32
+          example: 1
+        count:
+          type: integer
+          format: int32
+          example: 50
+        end:
+          type: string
+          example: 01.03.2024
+        error_status:
+          type: integer
+          format: int32
+          example: 0
+        feed_name:
+          type: string
+          example: DistributorName
+        sold:
+          type: integer
+          format: int32
+          example: 50
+        is_new:
+          type: integer
+          format: int32
+          example: 5
+        is_outlet:
+          type: integer
+          format: int32
+          example: 3
+        is_sale:
+          type: integer
+          format: int32
+          example: 3
+        new_product:
+          type: integer
+          format: int32
+          example: 15
+        ok_status:
+          type: integer
+          format: int32
+          example: 50
+        totalRevenue:
+          type: integer
+          format: int32
+          example: 205638
+
+    LoginDto:
+      type: object
+      required:
+        - id
+        - username
+        - password
+      properties:
+        login:
+          type: string
+          example: yourName@email.com
+        password:
+          type: string
+          example: 123456NCP
+
+    LoginMessage:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message

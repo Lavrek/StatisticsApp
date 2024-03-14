@@ -1,11 +1,11 @@
 package com.statistics.service;
 
-import com.statistics.dtos.GoodsDto;
 import com.statistics.exceptions.GoodsNotFoundException;
 import com.statistics.repository.DisappearRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import statistics.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +19,16 @@ public class DisappearServiceImpl implements DisappearService {
     GoodsServiceImpl goodsService;
 
     @Override
-    public List<GoodsDto> getSelectedSoldGoods(Long feed_id) {
+    public List<Item> getSelectedSoldGoods(Long feed_id) {
         List<String> selectedGoodsEan = disappearRepository.findSoldedProductsEans(feed_id);
 
-        List<GoodsDto> allGoods = goodsService.getAllGoods();
-        List<GoodsDto> selectedSoldGoods = new ArrayList<>();
+        List<Item> allGoods = goodsService.getAllGoods();
+        List<Item> selectedSoldGoods = new ArrayList<>();
         for (String ean :
                 selectedGoodsEan) {
-            for (GoodsDto goodsDto : allGoods) {
-                if (goodsDto.getEan().equals(ean)) {
-                    selectedSoldGoods.add(goodsDto);
+            for (Item item : allGoods) {
+                if (item.getEan().equals(ean)) {
+                    selectedSoldGoods.add(item);
                 }
             }
         }

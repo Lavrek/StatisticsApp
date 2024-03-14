@@ -2,7 +2,6 @@ package com.statistics;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.statistics.dtos.LoginDto;
 import com.statistics.repository.SecurityRepository;
 import com.statistics.service.SecurityServiceImpl;
 import com.statistics.model.Security;
@@ -25,7 +24,9 @@ public class SecurityServiceImplTest {
 
     @Test
     void testLoginSecuritySuccess() {
-        LoginDto loginDto = new LoginDto("testUser", "testPassword");
+        statistics.LoginDto loginDto = new statistics.LoginDto();
+        loginDto.setLogin("testUser");
+        loginDto.setPassword("testPassword");
         Security mockSecurity = new Security();
         mockSecurity.setLogin("testUser");
         mockSecurity.setPassword("hashedPassword");
@@ -41,7 +42,9 @@ public class SecurityServiceImplTest {
 
     @Test
     void testLoginSecurityWrongPassword() {
-        LoginDto loginDto = new LoginDto("testUser", "testPassword");
+        statistics.LoginDto loginDto = new statistics.LoginDto();
+        loginDto.setLogin("testUser");
+        loginDto.setPassword("testPassword");
         Security mockSecurity = new Security();
         mockSecurity.setLogin("testUser");
         mockSecurity.setPassword("hashedPassword");
@@ -57,7 +60,9 @@ public class SecurityServiceImplTest {
 
     @Test
     void testLoginSecurityEmailNotExists() {
-        LoginDto loginDto = new LoginDto("nonExistentUser", "testPassword");
+        statistics.LoginDto loginDto = new statistics.LoginDto();
+        loginDto.setLogin("nonExistentUser");
+        loginDto.setPassword("testPassword");
 
         when(securityRepository.findByLogin("nonExistentUser")).thenReturn(null);
 

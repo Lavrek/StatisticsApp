@@ -1,6 +1,5 @@
 package com.statistics;
 
-import com.statistics.dtos.Feed_viewDto;
 import com.statistics.mapper.Feed_viewDtoToFeed_view;
 import com.statistics.model.Disappear;
 import com.statistics.model.Feed_view;
@@ -15,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import statistics.Feed;
 
 import java.util.Arrays;
 import java.util.List;
@@ -66,14 +66,20 @@ public class Feed_viewServiceImplTest {
 
         Feed_view feedView1 = new Feed_view();
         feedView1.setId(1);
+        feedView1.setFeed_name("FeedName");
+        feedView1.setCount(123);
+        feedView1.setSold(5);
         Feed_view feedView2 = new Feed_view();
         feedView2.setId(2);
 
         List<Feed_view> mockFeedViewList = Arrays.asList(feedView1, feedView2);
 
-        Feed_viewDto feedViewDto1 = new Feed_viewDto();
+        Feed feedViewDto1 = new Feed();
         feedViewDto1.setId(1);
-        Feed_viewDto feedViewDto2 = new Feed_viewDto();
+        feedViewDto1.setFeedName("FeedName");
+        feedViewDto1.setCount(123);
+        feedViewDto1.setSold(5);
+        Feed feedViewDto2 = new Feed();
         feedViewDto2.setId(2);
 
         when(feed_viewRepository.findAll()).thenReturn(mockFeedViewList);
@@ -82,10 +88,13 @@ public class Feed_viewServiceImplTest {
         doReturn(100).when(spyService).totalRevenue(1);
         doReturn(100).when(spyService).totalRevenue(2);
 
-        List<Feed_viewDto> result = feed_viewService.getAllFeeds();
+        List<Feed> result = feed_viewService.getAllFeeds();
 
         assertNotNull(result);
         assertEquals(2, result.size());
+        assertEquals("FeedName", result.get(0).getFeedName());
+        assertEquals(123, result.get(0).getCount());
+        assertEquals(5, result.get(0).getSold());
     }
 
 

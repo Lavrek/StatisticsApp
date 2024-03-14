@@ -1,17 +1,18 @@
 package com.statistics.controller;
 
-import com.statistics.dtos.Feed_viewDto;
-import com.statistics.dtos.GoodsDto;
 import com.statistics.exceptions.FeedsNotFoundException;
+import com.statistics.model.Description;
+import com.statistics.model.Feed_view;
 import com.statistics.service.DisappearService;
 import com.statistics.service.Feed_viewService;
 import com.statistics.service.GoodsService;
 import com.statistics.exceptions.GoodsNotFoundException;
-import com.statistics.model.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import statistics.Feed;
+import statistics.Item;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class StatisticsController {
 
     @CrossOrigin(methods = {RequestMethod.GET})
     @GetMapping("products/getAll")
-    public List<GoodsDto> getAllProducts() {
+    public List<Item> getAllProducts() {
         try {
             return goodsService.getAllGoods();
         } catch (GoodsNotFoundException e) {
@@ -37,7 +38,7 @@ public class StatisticsController {
 
     @CrossOrigin(methods = {RequestMethod.GET})
     @GetMapping("/store")
-    public List<Feed_viewDto> getAllFeeds() {
+    public List<Feed> getAllFeeds() {
         try {
             return feed_viewService.getAllFeeds();
         } catch (FeedsNotFoundException ex) {
@@ -47,7 +48,7 @@ public class StatisticsController {
 
     @CrossOrigin(methods = {RequestMethod.GET})
     @GetMapping("/products/getSelectedGoods/{id}")
-    public List<GoodsDto> getSelectedGoods(@PathVariable("id") Long id) {
+    public List<Item> getSelectedGoods(@PathVariable("id") Long id) {
         try {
             return disappearService.getSelectedSoldGoods(id);
         } catch (GoodsNotFoundException exp) {

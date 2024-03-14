@@ -1,16 +1,16 @@
 package com.statistics.service;
 
-import com.statistics.dtos.GoodsDto;
+import com.statistics.exceptions.GoodsNotFoundException;
+import com.statistics.mapper.DescriptionDtoToDescription;
+import com.statistics.mapper.GoodsDtoToGoods;
 import com.statistics.model.*;
 import com.statistics.repository.AvailabilityRepository;
 import com.statistics.repository.DescriptionRepository;
 import com.statistics.repository.PriceRepository;
 import com.statistics.repository.ProductRepository;
-import com.statistics.exceptions.GoodsNotFoundException;
-import com.statistics.mapper.GoodsDtoToGoods;
-import com.statistics.model.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import statistics.Item;
 
 import java.util.List;
 import java.util.Map;
@@ -25,10 +25,11 @@ public class GoodsServiceImpl implements GoodsService {
     private final AvailabilityRepository availabilityRepository;
     private final DescriptionRepository descriptionRepository;
     GoodsDtoToGoods goodsDtoToGoods;
+    DescriptionDtoToDescription descriptionDtoToDescription;
     Price price;
 
     @Override
-    public List<GoodsDto> getAllGoods() {
+    public List<Item> getAllGoods() {
         List<Product> listOfProducts = productRepository.findAll().stream().toList();
         List<Price> listOfPrices = priceRepository.findAll().stream().toList();
         List<Availability> listOfAvailability = availabilityRepository.findAll().stream().toList();
@@ -39,7 +40,7 @@ public class GoodsServiceImpl implements GoodsService {
         Map<String, Availability> availabilityMap = listOfAvailability.stream()
                 .collect(Collectors.toMap(Availability::getEan, Function.identity()));
 
-        List<GoodsDto> listOfGoodsFromProducts = listOfProducts.stream()
+        List<Item> listOfGoodsFromProducts = listOfProducts.stream()
                 .map(product -> {
                     Goods goods = new Goods();
                     goods.setId(product.getId());

@@ -7,7 +7,7 @@ import AllProductsFetchingComponent from "./components/fetchingComponents/AllPro
 import SoldProductsFetchingComponent from "./components/fetchingComponents/SoldProductsFetchingComponent";
 import AllfeedsFetchingComponent from "./components/fetchingComponents/AllfeedsFetchingComponent";
 import TotalRevenueFetchingComponent from "./components/fetchingComponents/TotalRevenueFetchingComponent";
-import DescritionFetchingComponents from "./components/fetchingComponents/DescritionFetchingComponents";
+import DescriptionFetchingComponents from "./components/fetchingComponents/DescriptionFetchingComponents";
 
 function App() {
   const [color] = useState("lightgray");
@@ -69,7 +69,7 @@ function App() {
               <AppBarComponent />
               <div className="container mt-2" style={{ marginTop: 20 }}>
               <h2>Detail produktu</h2>
-              <DescritionFetchingComponents /> {}
+              <DescriptionFetchingComponents /> {}
               </div>
             </>
           } />

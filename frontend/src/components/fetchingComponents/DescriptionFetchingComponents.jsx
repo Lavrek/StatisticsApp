@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LoadingComponent from '../LoadingComponent';
 
-const DescritionFetchingComponents = () => {
+const DescriptionFetchingComponents = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -54,4 +54,4 @@ const DescritionFetchingComponents = () => {
   );
 };
 
-export default DescritionFetchingComponents;
+export default DescriptionFetchingComponents;
